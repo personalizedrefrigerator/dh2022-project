@@ -9,17 +9,23 @@ import {
 import Home from './routes/Home';
 import ErrorPage from './routes/ErorrPage';
 import ProfileView from './routes/ProfileView';
+import App from './routes/App';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <App/>,
     errorElement: <ErrorPage/>,
-  },
-  {
-    path: "/profile",
-    element: <ProfileView/>,
-    errorElement: <ErrorPage/>,
+    children: [
+      {
+        path: "",
+        element: <Home/>,
+      },
+      {
+        path: "profile",
+        element: <ProfileView/>,
+      }
+    ],
   }
 ]);
 
