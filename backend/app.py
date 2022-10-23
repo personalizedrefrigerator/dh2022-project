@@ -68,19 +68,48 @@ def handle_request(table, data):
         create_one(table, data)
         return []
 
-@api.route('/users',  methods=['GET', 'POST'])
-def get_users():
-    return handle_request('user', request)
+@api.route('/users', methods=['GET', 'POST'])
+def handle_users():
+    conn = get_db_connection()
+    users = []
+
+    if request.method == 'GET':
+        try:
+            # omit login credentials
+            users = conn.execute('SELECT username, firstName, lastName, email FROM user').fetchall()
+
+        except:
+            print('Query failed.')
+
+    if request.method == 'POST':
+        create_one('user', request)
+
+    conn.close()
+    return [dict(row) for row in users]
+
+@api.route('/users/<username>')
+def get_user(username):
+    conn = get_db_connection()
+    user = {}
+
+    try:
+        user = conn.execute('SELECT username, firstName, lastName, email FROM user WHERE username = ?', [username]).fetchone()
+
+    except:
+        print('Query failed.')
+
+    conn.close()
+    return [dict(user)]
 
 @api.route('/posts',  methods=['GET', 'POST'])
-def get_posts():
+def handle_posts():
     return handle_request('post', request)
 
 @api.route('/tags',  methods=['GET', 'POST'])
-def get_tags():
+def handle_tags():
     return handle_request('tag', request)
 
-@api.route('/search')
+@api.route('/search/')
 def search():
     return []
 
