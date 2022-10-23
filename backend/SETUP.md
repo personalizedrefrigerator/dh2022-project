@@ -4,7 +4,7 @@ Mac/linux
 cd backend
 python -m venv env
 source env/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 Windows should be similar, but the path to `activate` will be different.

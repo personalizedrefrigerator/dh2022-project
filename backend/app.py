@@ -94,12 +94,11 @@ def get_user(username):
 
     try:
         user = conn.execute('SELECT username, firstName, lastName, email FROM user WHERE username = ?', [username]).fetchone()
-
     except:
         print('Query failed.')
 
     conn.close()
-    return [dict(user)]
+    return dict(user)
 
 @api.route('/posts',  methods=['GET', 'POST'])
 def handle_posts():
@@ -113,6 +112,16 @@ def handle_tags():
 def search():
     return []
 
+@api.route('/my-profile')
+@jwtlib.jwt_required()
+def get_userdata():
+    print('getting userdata...')
+    email = jwtlib.get_jwt_identity()
+    print('user: ', email)
+
+    conn = get_db_connection()
+    res = conn.execute('SELECT username, firstName, lastName, email FROM user WHERE email = ?', [email]).fetchone()
+    return dict(res)
 
 
 def get_salt(email: str) -> str:
