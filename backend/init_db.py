@@ -23,11 +23,11 @@ cur.executemany(
 cur.executemany(
     "INSERT INTO tag (tagName, color) VALUES (?, ?)",
     [
-        ('UW', '#ff0000'),
-        ('Seattle', '#00ff00'),
-        ('Washington', '#0000ff'),
-        ('USA', '#ff00ff'),
-        ('Safety', '#888888')
+        ('UW', '#FF8B8B'),
+        ('Seattle', '#F5FFA2'),
+        ('Washington', '#AAFFA2'),
+        ('USA', '#9FD1FF'),
+        ('Safety', '#FFAEF7')
     ]
 )
 

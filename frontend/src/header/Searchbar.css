@@ -9,7 +9,6 @@ input {
     color: var(--primary-fg-color);
     text-decoration: none;
     border-radius: 0.4em;
-    border: none;
 }
 
 #searchBtn {
