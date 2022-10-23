@@ -1,54 +1,37 @@
 from flask import Flask
+import sqlite3
 
 api = Flask(__name__)
 
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def get_row_data(rows):
+    return [dict(row) for row in rows]
+
 @api.route('/users')
-def tags_route():
-    response_body = [{
-        "content": "Amazing",
-        "color": "black",
-        "id": "1234"
-    }]
-    return response_body
+def get_users():
+    conn = get_db_connection()
+    users = conn.execute('SELECT * FROM user').fetchall()
+    conn.close()
+    return get_row_data(users)
 
 @api.route('/posts')
-def posts():
-    response_body = []
-    for i in range(10):
-        response_body.append({
-            "id": i,
-            "title": f"post-title-{i}",
-            "author": f"author-{i}",
-            "content": f"this is a post {i}"
-        })
-
-    return response_body
-
-@api.route('/users')
-def users():
-    response_body = []
-
-    for i in range(10):
-        response_body.append({
-            "userid": i,
-            "firstname": f"firstname-{i}",
-            "lastname": f"lastname-{i}",
-            "username": f"username-{i}",
-            "password": f"password-{i}",
-            "email": f"email@email.com-{i}",
-        })
-
-    return response_body
+def get_posts():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM post').fetchall()
+    conn.close()
+    return get_row_data(posts)
 
 @api.route('/tags')
-def tags():
-    return [{
-        "content": "Hello",
-        "id": "1234",
-        "color": "black"
-    }]
+def get_tags():
+    conn = get_db_connection()
+    tags = conn.execute('SELECT * FROM tag').fetchall()
+    conn.close()
+    return get_row_data(tags)
 
-
-@api.route('/search/<query>')
-def search(query=''):
-    return ["some-post-id-here"]
+@api.route('/search')
+def get_search():
+    return []
