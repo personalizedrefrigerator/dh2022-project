@@ -1,6 +1,10 @@
 .navabar {
     display: flex;
     width: 100%;
+    justify-content: space-between;
+    margin-top: 1%;
+    box-sizing: border-box;
+    background-color: var(--primary-shadow-color);
 }
 
 .left {
@@ -12,6 +16,7 @@
 }
 
 .navBtn {
-    border: 2px solid var(--primary-fg-color);
+    background-color: var(--primary-fg-color);
     font-family: serif;
+    margin: 10px;
 }
