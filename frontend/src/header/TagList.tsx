@@ -9,12 +9,9 @@ const TagList = () => {
     const tags = useMemo(() => {
         const result = [];
         for (const tag of tagData) {
-            const tagProps = {style: {backgroundColor: tag.color},
-                                key: tag.tagId,
-                                data: tag.tagName}
-            result.push(
-                <Tag {...tagProps}/>
-            );
+            const tagProps = {bgColor: tag.color, key: tag.tagId, data: tag.tagName}
+
+            result.push(<Tag {...tagProps}/>);
         }
         return result;
     }, [ tagData ]);

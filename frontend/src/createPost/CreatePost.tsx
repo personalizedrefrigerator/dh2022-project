@@ -77,6 +77,7 @@ const TitleInput = styled.input`
     width: 60%;
     font-size: 18px;
     font-weight: bold;
+    background-color: white;
 `;
 
 const TagInput = styled.select`
