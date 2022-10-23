@@ -109,6 +109,19 @@ def handle_posts():
     posts.reverse()
     return posts
 
+@api.route('/posts/<postId>/tag')
+def get_tag_name(postId):
+    conn = get_db_connection()
+    tag = {}
+
+    try:
+        tag = conn.execute('SELECT * FROM tag JOIN post ON tag.tagId = post.tagId WHERE post.postId = ?', [postId]).fetchone()
+    except:
+        print('Query failed.')
+
+    conn.close()
+    return dict(tag)
+
 @api.route('/create-post', methods=['POST'])
 @jwtlib.jwt_required()
 def create_post():
