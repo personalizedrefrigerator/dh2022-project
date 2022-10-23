@@ -23,7 +23,7 @@ const Posts = ({ count }: { count: number }) => {
 
     return (
         <div>
-            {posts}
+            { posts.length === 0 ? 'There are no posts ☹' : posts }
         </div>
     );
 };
