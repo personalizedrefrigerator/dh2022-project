@@ -47,7 +47,7 @@ def create_one(table, requestData):
 def create_one_from_data(table, data):
     conn = get_db_connection()
     keys = functools.reduce(lambda a, b: f'{a}, {b}', list(data.keys()))
-    
+
     params = '?'
     for i in range(len(list(data.keys()))-1):
         params = params + ', ?'
