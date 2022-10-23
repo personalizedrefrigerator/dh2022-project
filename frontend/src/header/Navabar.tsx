@@ -15,7 +15,7 @@ const Navabar = () => {
     const signedInBtns = (
         <>
             {profile}
-            <button onClick={signOut}>Sign Out</button>
+            <button onClick={signOut} className='navBtn'>Sign Out</button>
         </>
     );
 
