@@ -1,7 +1,8 @@
 
 import './PostSummary.css';
+import { PostData } from './types';
 
-const PostSummary = ({ data }) => {
+const PostSummary = ({ data }: { data: PostData }) => {
     return (
         <div className='post-summary'>
             <h2>{data.title}</h2>

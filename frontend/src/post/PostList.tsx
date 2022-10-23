@@ -5,13 +5,14 @@ import { useState } from 'react';
 import fetchRoute from '../api/fetchRoute';
 
 import PostSummary from './PostSummary';
+import { PostData } from './types';
 
-const Posts = ({ count }) => {
-    const [ postData, setPostData ] = useState([]);
+const Posts = ({ count }: { count: number }) => {
+    const [ postData, setPostData ] = useState<PostData[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            let data;
+            let data: PostData[]|undefined;
 
             try {
                 data = await fetchRoute(`/posts`);///${count}`);
