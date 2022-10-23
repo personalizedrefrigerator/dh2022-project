@@ -55,6 +55,8 @@ const TagContainer = styled.div`
 
 const TagFlag = styled.div<{ color: string }>`
     background-color: ${(props) => props.color};
+    text-shadow: 1px 0px 3px black;
+    color: black;
     border-radius: 4px;
     padding: 4px;
 `;
