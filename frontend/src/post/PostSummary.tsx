@@ -1,6 +1,6 @@
 
 import './PostSummary.css';
-import { PostData } from './types';
+import { PostData } from '../helper/types';
 
 const PostSummary = ({ data }: { data: PostData }) => {
     return (
