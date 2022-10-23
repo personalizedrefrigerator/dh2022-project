@@ -1,8 +1,8 @@
 const Tag = ({ data }: { data: string }) => {
     return (
-    <div>
-        <p>{data}</p>
-    </div>
+        <div>
+            <p>{data}</p>
+        </div>
     )
 }
 
