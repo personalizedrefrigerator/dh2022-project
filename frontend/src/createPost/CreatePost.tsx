@@ -78,6 +78,8 @@ const TitleInput = styled.input`
     font-size: 18px;
     font-weight: bold;
     background-color: white;
+    color: black;
+    border: 1px solid black;
 `;
 
 const TagInput = styled.select`
