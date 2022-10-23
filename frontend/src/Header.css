@@ -1,7 +1,7 @@
 /* Didn't know the names of color placeholders so used these for now */
 a:link, a:visited {
     /* uses a button type layout */
-    color: whitesmoke;
+    color: var(--primary-fg-color);
     padding: 4px 45px;
     text-align: center; 
     text-decoration: none;
