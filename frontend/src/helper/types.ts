@@ -1,12 +1,12 @@
 
 export interface PostData {
     title: string;
-    description: string;
-    id: string;
+    content: string;
+    postId: string;
 }
 
 export interface TagData {
-    content: string
+    tagName: string
     color: string
-    id: string
+    tagId: string
 }

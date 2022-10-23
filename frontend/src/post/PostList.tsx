@@ -12,7 +12,7 @@ const Posts = ({ count }: { count: number }) => {
         const result = [];
         for (const post of postData) {
             result.push(
-                <PostSummary key={post.id} data={post} />
+                <PostSummary key={post.postId} data={post} />
             );
         }
         return result;
