@@ -21,12 +21,11 @@ const PostSummary = ({ data }: { data: PostData }) => {
 
     }, [setTag]);
 
-    const PostSummary = ({ data }: { data: PostData }) => {
-        const navigate = useNavigate();
-    
-        const doNavigate = useCallback(() => {
-            navigate('/posts/' + data.postId);
-        }, [navigate]);
+    const navigate = useNavigate();
+
+    const doNavigate = useCallback(() => {
+        navigate('/posts/' + data.postId);
+    }, [navigate]);
 
     return (
         <button onClick={doNavigate} className='post-summary' type="button">
@@ -39,7 +38,7 @@ const PostSummary = ({ data }: { data: PostData }) => {
             </div>
             <p>{data.content}</p>
             <TagContainer>
-                <Tag color={tag?.color || '#fff'}>{tag?.tagName}</Tag>
+                <TagFlag color={tag?.color || '#fff'}>{tag?.tagName}</TagFlag>
             </TagContainer>
         </button>
     );
@@ -54,7 +53,7 @@ const TagContainer = styled.div`
     padding: 4px;
 `;
 
-const Tag = styled.div<{ color: string }>`
+const TagFlag = styled.div<{ color: string }>`
     background-color: ${(props) => props.color};
     border-radius: 4px;
     padding: 4px;
