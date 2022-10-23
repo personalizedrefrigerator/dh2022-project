@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import fetchRoute from "../api/fetchRoute";
+import safeHTML from "../helper/safeHTML";
 import { UserData } from "../helper/types";
 import useData from "../helper/useData";
 
@@ -28,7 +30,7 @@ const ProfileView = ({ username }: ProfileViewProps) => {
                     <Name>{`${user?.firstName} ${user?.lastName}`}</Name>
                     <div>
                         <div>{username}</div>
-                        <a href="/">{user?.email}</a>
+                        <Link to="/">{user?.email}</Link>
                     </div>
                 </ProfileInfo>
             </HeaderSection>

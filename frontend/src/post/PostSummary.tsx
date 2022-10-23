@@ -4,6 +4,7 @@ import { PostData } from '../helper/types';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import Tag from '../header/Tag';
+import safeHTML from '../helper/safeHTML';
 
 const PostSummary = ({ data }: { data: PostData }) => {
     const navigate = useNavigate();
