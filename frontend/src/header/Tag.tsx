@@ -1,7 +1,8 @@
-const Tag = ({ data }: { data: string }) => {
+const Tag = ({ data, bgColor }: { data: string, bgColor: string }) => {
+    const color = {backgroundColor: bgColor}
     return (
-        <div>
-            <p>{data}</p>
+        <div style={color}>
+            {data}
         </div>
     )
 }
