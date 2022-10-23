@@ -1,0 +1,17 @@
+.navabar {
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    justify-content: left;
+}
+
+.right {
+    justify-content: right;
+}
+
+.navBtn {
+    border: 2px solid var(--primary-fg-color);
+    font-family: serif;
+}

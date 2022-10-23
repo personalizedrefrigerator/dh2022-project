@@ -2,8 +2,10 @@
 /**
  * Returns data as JSON fetched from the given route.
  */
-export default async (route) => {
+const fetchRoute = async (route: string): Promise<any> => {
     const resp = await fetch(route);
     console.assert(resp.ok);
-    return resp.json();
+    return await resp.json();
 };
+
+export default fetchRoute;
