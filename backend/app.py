@@ -11,7 +11,7 @@ def get_db_connection():
 def get_all_rows(table):
     conn = get_db_connection()
     rows = conn.execute(f'SELECT * FROM {table}').fetchall()
-    conn.close
+    conn.close()
     return [dict(row) for row in rows]
 
 @api.route('/users')
