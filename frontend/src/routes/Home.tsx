@@ -5,7 +5,6 @@ import Header from '../Header';
 const Home = () => {
     return (
         <div>
-            <Header />
             <PostsList count={5} />
         </div>
     );
