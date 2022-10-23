@@ -10,4 +10,6 @@ header {
 
 .nonNav {
     padding: 1.5em;
+    border-radius: 0.4em;
+    box-sizing: border-box;
 }
