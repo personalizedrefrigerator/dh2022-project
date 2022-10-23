@@ -1,8 +1,6 @@
 from flask import Flask
 import sqlite3
 
-api = Flask(__name__)
-
 connection = sqlite3.connect('database.db')
 
 with open('db.sql') as file:
@@ -11,14 +9,14 @@ with open('db.sql') as file:
 cur = connection.cursor()
 
 cur.executemany(
-    "INSERT INTO user (firstName, lastName, userName, pass, email) VALUES (?, ?, ?, ?, ?)",
+    "INSERT INTO user (firstName, lastName, userName, pass, salt, email) VALUES (?, ?, ?, ?, ?, ?)",
     [
-        ('Joe', 'P', 'joep', 'pass1234', 'joe@email.com'),
-        ('Mark', 'P', 'markp', 'pass1234', 'joe@email.com'),
-        ('Ayush', 'A', 'ayusha', 'pass1234', 'joe@email.com'),
-        ('Henry', 'H', 'henryh', 'pass1234', 'joe@email.com'),
-        ('Mary', 'S', 'marys', 'pass1234', 'joe@email.com'),
-        ('Suzie', 'Q', 'suzieq', 'pass1234', 'joe@email.com')
+        ('Joe', 'P', 'joep', 'hashedpass1234', '123', 'joe1@email.com'),
+        ('Mark', 'P', 'markp', 'hashedpass12345', '456', 'joe2@email.com'),
+        ('Ayush', 'A', 'ayusha', 'hashedpass1234', 'saltforpassword', 'joe3@email.com'),
+        ('Henry', 'H', 'henryh', 'hashed1234', 'salt :(', 'joe4@email.com'),
+        ('Mary', 'S', 'marys', 'hashedpass1234', 'salt :)', 'joe5@email.com'),
+        ('Suzie', 'Q', 'suzieq', 'hashedpass1234', 'salt3', 'joe6@email.com')
     ]
 )
 

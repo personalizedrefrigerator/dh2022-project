@@ -11,6 +11,7 @@ import ErrorPage from './routes/ErrorPage';
 import ProfileView from './routes/ProfileView';
 import App from './routes/App';
 import { searchLoader } from './header/Searchbar';
+import CreatePost from './createPost/CreatePost';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfileView/>,
+      },
+      {
+        path: "new-post",
+        element: <CreatePost/>,
       }
     ],
   }

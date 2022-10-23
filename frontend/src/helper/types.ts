@@ -6,7 +6,7 @@ export interface PostData {
 }
 
 export interface TagData {
-    tagName: string
-    color: string
-    tagId: string
+    tagName: string;
+    color: string;
+    tagId: string;
 }

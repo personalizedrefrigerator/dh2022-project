@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useToken } from '../helper/loginToken';
 import './Navabar.css';
 
 const Navabar = () => {
     const profile = <Link to={'profile'} className='navBtn'>Profile</Link>
     const login = <Link to={'login'} className='navBtn'>Login</Link>;
 
-    const userLoggedIn = true // Dummy variable, needs changing
+    const userLoggedIn = useToken() !== null; // Dummy variable, needs changing
     const rightBtn = userLoggedIn ? profile : login;
     return (
         <div className='navabar'>
