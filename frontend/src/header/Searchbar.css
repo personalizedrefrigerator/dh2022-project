@@ -15,6 +15,10 @@ input {
     margin-left: 4px;
 }
 
+#searchBtn, #query {
+    border: none;
+}
+
 .tag {
     width: max-content;
     margin-top: 0.25em;
