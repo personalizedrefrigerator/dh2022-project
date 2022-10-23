@@ -3,16 +3,19 @@ import { TagData } from "../helper/types";
 import useData from "../helper/useData";
 
 export default function CreatePost() {
+    const defaultTag = 'default';
+
     const submit = async () => {
         const post = {
             title: (document.getElementById('title') as HTMLInputElement)?.value,
             userId: 1, // TODO: replace with real userId
             content: (document.getElementById('content') as HTMLTextAreaElement)?.value,
-            tagId: 1 + Number((document.getElementById('tagName') as HTMLSelectElement)?.value)
+            tagId: (document.getElementById('tagName') as HTMLSelectElement)?.value
         };
+        console.log(post.tagId);
 
         // tagId = 0 is the 'select a tag' option, not a real tag
-        if (Object.values(post).every((value) => value !== '') && post.tagId > 0) {
+        if (Object.values(post).every((value) => value !== '') && post.tagId !== defaultTag) {
             await fetch('/posts', {
                 method: 'post',
                 headers: { 'content-type': 'application/json' },
@@ -37,10 +40,10 @@ export default function CreatePost() {
                     type="text"
                     placeholder="Title..."
                 />
-                <TagInput id="tagName" defaultValue={'default'}>
+                <TagInput id="tagName" defaultValue={defaultTag}>
                     <option hidden disabled value="default">-- select a tag --</option>
-                    {useData<TagData>('/tags').map((tag, i) => {
-                        return <option key={tag.tagId} value={i}>{tag.tagName}</option>
+                    {useData<TagData>('/tags').map((tag) => {
+                        return <option key={tag.tagId} value={tag.tagId}>{tag.tagName}</option>
                     })}
                 </TagInput>
                 <ContentInput

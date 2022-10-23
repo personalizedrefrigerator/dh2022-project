@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <ProfileView/>,
+        element: <ProfileView username="joep"/>, // TODO: replace with real user
       },
       {
         path: "new-post",
