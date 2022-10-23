@@ -1,0 +1,9 @@
+input,button {
+    background-color: var(--primary-bg-color);
+    font-family: sans-serif;
+    padding: 4px;
+    color: var(--primary-fg-color);
+    text-decoration: none;
+    border-radius: 0.4em;
+    border: solid 1px;
+}

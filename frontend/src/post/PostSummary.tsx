@@ -3,6 +3,7 @@ import './PostSummary.css';
 import { PostData } from '../helper/types';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import Tag from '../header/Tag';
 
 const PostSummary = ({ data }: { data: PostData }) => {
     const navigate = useNavigate();
@@ -13,7 +14,13 @@ const PostSummary = ({ data }: { data: PostData }) => {
 
     return (
         <button onClick={doNavigate} className='post-summary' type="button">
-            <h2>{data.title}</h2>
+            <div className='postHeader'>
+                <div className='leftDisplay'>
+                    <h2>{data.title}</h2>
+                </div>
+                <div className='rightDisplay'>
+                </div>
+            </div>
             <p>{data.content}</p>
         </button>
     );
