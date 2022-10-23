@@ -1,9 +1,13 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router";
+import postRoute from "../api/postRoute";
 import { TagData } from "../helper/types";
 import useData from "../helper/useData";
 
 export default function CreatePost() {
     const defaultTag = 'default';
+
+    const navigate = useNavigate();
 
     const submit = async () => {
         const post = {
@@ -16,20 +20,20 @@ export default function CreatePost() {
 
         // tagId = 0 is the 'select a tag' option, not a real tag
         if (Object.values(post).every((value) => value !== '') && post.tagId !== defaultTag) {
-            await fetch('/posts', {
-                method: 'post',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({
-                    title: post.title,
-                    userId: post.userId,
-                    content: post.content,
-                    tagId: post.tagId,
-                    createdDate: Date.now()
-                })
+            const res = await postRoute('/create-post', {
+                title: post.title,
+                userId: post.userId,
+                content: post.content,
+                tagId: post.tagId,
+                createdDate: Date.now()
             });
-
-        } else
+            if (res.ok) {
+                navigate('/');
+            }
+        } else {
+            alert('Please fill in all fields!');
             console.log('Post object missing fields.')
+        }
     }
 
     return (
