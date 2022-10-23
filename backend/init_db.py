@@ -1,6 +1,6 @@
 from flask import Flask
 import sqlite3
-# test comment
+
 api = Flask(__name__)
 
 connection = sqlite3.connect('database.db')
