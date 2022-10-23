@@ -2,7 +2,7 @@ from datetime import timedelta
 from flask import Flask, request, jsonify, abort
 import functools
 import sqlite3
-import secrets, hashlib
+import secrets, hashlib, base64
 
 import flask_jwt_extended as jwt
 
@@ -102,40 +102,40 @@ def validate_password(email, password_hash):
 
 def user_exists(email, username):
     con = get_db_connection()
-    res = con.execute('SELECT * FROM user WHERE email=:email', email)
+    res = con.execute('SELECT * FROM user WHERE email=:email', { "email": email })
     email_result = res.fetchone()
-    res = con.execute('SELECT * FROM user WHERE username=:uname', username)
+    res = con.execute('SELECT * FROM user WHERE username=:uname', { "uname": username })
     username_result = res.fetchone()
     con.close()
 
     return email_result or username_result
 
 
-def hash_password(password: bytes, salt: bytes) -> bytes:
+def hash_password(password: str, salt: str) -> str:
     # Determining scrypt parameters: https://crypto.stackexchange.com/a/37088
-    return hashlib.scrypt(password, n=4096 * 2, r=8, p=2, salt=salt)
+    return base64.b64encode(hashlib.scrypt(password.encode('utf-8'), n=4096 * 2, r=8, p=2, salt=salt.encode('utf-8')))
 
 @api.route('/new-account', methods=["POST"])
 def create_account():
     email = request.json.get('email', None)
     username = request.json.get('username', None)
-    first_name = request.json.get('firstName', None)
-    last_name = request.json.get('lastName', None)
+    first_name = request.json.get('firstname', None)
+    last_name = request.json.get('lastname', None)
 
     salt = secrets.token_urlsafe(32)
 
-    password_plaintext = request.json.get('password', None)
+    password_plaintext: str = request.json.get('password', None)
     password_hash = hash_password(password_plaintext, salt)
     password_plaintext = None
 
     if user_exists(email, username):
-        return ({'msg': 'User already exists (email or username is taken)'}, 401)
+        return ({'msg': 'User already exists (email or username is taken). Please try logging in.'}, 401)
     
     con = get_db_connection()
     cursor = con.cursor()
     cursor.execute(
-        'INSERT INTO user (firstName, lastName, userName, pass, email) VALUES (?, ?, ?, ?, ?)', 
-        (first_name, last_name, username, password_hash, email)
+        'INSERT INTO user (firstName, lastName, userName, pass, salt, email) VALUES (?, ?, ?, ?, ?, ?)', 
+        (first_name, last_name, username, password_hash, salt, email)
     )
     con.commit()
     con.close()

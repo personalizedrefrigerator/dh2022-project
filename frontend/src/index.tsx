@@ -12,6 +12,7 @@ import ProfileView from './routes/ProfileView';
 import App from './routes/App';
 import { searchLoader } from './header/Searchbar';
 import CreatePost from './createPost/CreatePost';
+import SignUp from './routes/SignUp';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "new-post",
         element: <CreatePost/>,
+      },
+      {
+        path: 'sign-up',
+        element: <SignUp/>
       }
     ],
   }
