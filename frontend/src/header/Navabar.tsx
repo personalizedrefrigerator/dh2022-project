@@ -1,6 +1,7 @@
+import Router from '../Router';
 import './Navabar.css';
 
-const Navabar = () => {
+const Navabar = ({ router }: { router: Router }) => {
     return (
         <div className='navabar'>
             <div className='left'>
