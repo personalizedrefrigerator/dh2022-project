@@ -14,6 +14,7 @@ import { searchLoader } from './header/Searchbar';
 import CreatePost from './createPost/CreatePost';
 import SignUp from './routes/SignUp';
 import LogIn from './routes/LogIn';
+import PostView, { postLoader } from './routes/PostView';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       {
         path: "new-post",
         element: <CreatePost/>,
+      },
+      {
+        path: "posts/:postId",
+        loader: postLoader,
+        element: <PostView/>,
       },
       {
         path: 'sign-up',
