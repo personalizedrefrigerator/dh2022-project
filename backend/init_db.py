@@ -9,7 +9,7 @@ with open('db.sql') as file:
 cur = connection.cursor()
 
 cur.executemany(
-    "INSERT INTO user (firstName, lastName, userName, pass, salt, email) VALUES (?, ?, ?, ?, ?, ?)",
+    "INSERT INTO user (firstName, lastName, username, pass, salt, email) VALUES (?, ?, ?, ?, ?, ?)",
     [
         ('Joe', 'P', 'joep', 'hashedpass1234', '123', 'joe1@email.com'),
         ('Mark', 'P', 'markp', 'hashedpass12345', '456', 'joe2@email.com'),
