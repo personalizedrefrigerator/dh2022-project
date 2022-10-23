@@ -18,7 +18,8 @@ input {
 
 .tag {
     width: max-content;
-    margin: 0.25em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
     border-radius: 0.4em;
     padding: 3px;
 }
