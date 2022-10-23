@@ -1,4 +1,9 @@
-
+export interface UserData {
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+}
 export interface PostData {
     title: string;
     content: string;
@@ -6,7 +11,7 @@ export interface PostData {
 }
 
 export interface TagData {
-    tagName: string
-    color: string
-    tagId: string
+    tagName: string;
+    color: string;
+    tagId: string;
 }

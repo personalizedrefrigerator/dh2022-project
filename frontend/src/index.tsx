@@ -11,6 +11,9 @@ import ErrorPage from './routes/ErrorPage';
 import ProfileView from './routes/ProfileView';
 import App from './routes/App';
 import { searchLoader } from './header/Searchbar';
+import CreatePost from './createPost/CreatePost';
+import SignUp from './routes/SignUp';
+import LogIn from './routes/LogIn';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +28,19 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <ProfileView/>,
+        element: <ProfileView username="joep"/>, // TODO: replace with real user
+      },
+      {
+        path: "new-post",
+        element: <CreatePost/>,
+      },
+      {
+        path: 'sign-up',
+        element: <SignUp/>
+      },
+      {
+        path: 'login',
+        element: <LogIn/>
       }
     ],
   }
