@@ -1,5 +1,39 @@
 
 :root {
   --primary-fg-color: black;
+  --primary-bg-color: white;
+  --primary-shadow-color: rgba(0, 0, 0, 0.3);
+
+  padding: 0;
+  margin: 0;
+
+  background-color: #ccc;
+
   font-family: sans-serif;
+  color: var(--primary-fg-color);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #aa0000;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --primary-fg-color: white;
+    --primary-bg-color: #333;
+    --primary-shadow-color: rgba(100, 200, 200, 0.3);
+
+    background-color: #555;
+  
+    font-family: sans-serif;
+  }
+
+  a {
+    color: #ffaaff;
+  }
 }

@@ -1,32 +1,10 @@
-import { useState, useEffect, useMemo } from 'react';
-import fetchRoute from '../api/fetchRoute';
-import { TagData } from './types';
+import { useMemo } from 'react';
+import { TagData } from '../helper/types';
 import Tag from './Tag'
+import useData from '../helper/useData';
 
 const TagList = () => {
-    const [ tagData, setTagData ] = useState<TagData[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            let data: TagData[] | undefined;
-
-            try {
-                data = await fetchRoute('/tags');///${count}`);
-            } catch(e) {
-                console.warn('unable to fetch data!', e);
-            }
-
-            if (!data) {
-                return;
-            }
-            if (data['length'] === undefined) {
-                throw new Error('Not an array');
-            }
-            
-            setTagData(data);
-        };
-        fetchData();
-    }, [setTagData]);
+    const tagData = useData<TagData>('/tags')
 
     const tags = useMemo(() => {
         const result = [];

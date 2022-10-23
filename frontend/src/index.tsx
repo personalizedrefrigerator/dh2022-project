@@ -7,19 +7,21 @@ import {
   createBrowserRouter, RouterProvider
 } from 'react-router-dom';
 import Home from './routes/Home';
-import ErrorPage from './routes/ErorrPage';
+import ErrorPage from './routes/ErrorPage';
 import ProfileView from './routes/ProfileView';
 import App from './routes/App';
+import { searchLoader } from './header/Searchbar';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
     errorElement: <ErrorPage/>,
+    loader: searchLoader,
     children: [
       {
-        path: "",
         element: <Home/>,
+        index: true,
       },
       {
         path: "profile",

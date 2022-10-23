@@ -1,6 +1,5 @@
 
 import PostsList from '../post/PostList';
-import Header from '../Header';
 
 const Home = () => {
     return (
