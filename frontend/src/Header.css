@@ -1,7 +1,6 @@
 /* Didn't know the names of color placeholders so used these for now */
 a:link, a:visited {
     /* uses a button type layout */
-    background-color: red;
     color: whitesmoke;
     padding: 4px 45px;
     text-align: center; 
@@ -11,15 +10,14 @@ a:link, a:visited {
   }
 
 a:link {
-    color: red;
+    color: white;
     background-color: black;
 }
 
-  
 a:hover {
-    color: hotpink;
-    background-color: yellow;
+    box-shadow: 0px 0px 3px var(--primary-shadow-color);
 }
+
 /* maybe consider using like a pink/magenta as one of our colors to honor tmobile the sponsor of dubhacks? */
 a:active {
     color: blue;
