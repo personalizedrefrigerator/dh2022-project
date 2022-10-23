@@ -1,32 +1,30 @@
 from flask import Flask
+import sqlite3
 
 api = Flask(__name__)
 
-@api.route('/posts')
-def posts():
-    response_body = [];
-    for i in range(10):
-        response_body.append({
-            "id": i,
-            "title": f"post-title-{i}",
-            "author": f"author-{i}",
-            "content": f"this is a post {i}"
-        })
-
-    return response_body
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 @api.route('/users')
-def users():
-    response_body = [];
+def get_users():
+    conn = get_db_connection()
+    users = conn.execute('SELECT * FROM user').fetchall()
+    conn.close()
+    return users
 
-    for i in range(10):
-        response_body.append({
-            "userid": i,
-            "firstname": f"firstname-{i}",
-            "lastname": f"lastname-{i}",
-            "username": f"username-{i}",
-            "password": f"password-{i}",
-            "email": f"email@email.com-{i}",
-        })
+@api.route('/posts')
+def get_posts():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM post').fetchall()
+    conn.close()
+    return posts
 
-    return response_body
+@api.route('/tags')
+def get_tags():
+    conn = get_db_connection()
+    tags = conn.execute('SELECT * FROM tag').fetchall()
+    conn.close()
+    return tags
