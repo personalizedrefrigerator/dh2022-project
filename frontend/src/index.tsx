@@ -10,12 +10,14 @@ import Home from './routes/Home';
 import ErrorPage from './routes/ErorrPage';
 import ProfileView from './routes/ProfileView';
 import App from './routes/App';
+import { searchLoader } from './header/Searchbar';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
     errorElement: <ErrorPage/>,
+    loader: searchLoader,
     children: [
       {
         element: <Home/>,
