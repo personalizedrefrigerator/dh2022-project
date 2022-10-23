@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { TagData } from './types';
+import { TagData } from '../helper/types';
 import Tag from './Tag'
 import useData from '../helper/useData';
 

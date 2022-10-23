@@ -1,12 +1,9 @@
 
-import { useEffect } from 'react';
 import { useMemo } from 'react';
-import { useState } from 'react';
-import fetchRoute from '../api/fetchRoute';
 import useData from '../helper/useData';
 
 import PostSummary from './PostSummary';
-import { PostData } from './types';
+import { PostData } from '../helper/types';
 
 const Posts = ({ count }: { count: number }) => {
     const postData = useData<PostData>('/posts');
