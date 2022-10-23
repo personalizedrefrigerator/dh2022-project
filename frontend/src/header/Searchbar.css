@@ -1,3 +1,17 @@
 .searchbar {
     margin-top: 5px;
 }
+
+input {
+    background-color: var(--primary-bg-color);
+    font-family: sans-serif;
+    padding: 4px;
+    color: var(--primary-fg-color);
+    text-decoration: none;
+    border-radius: 0.4em;
+    border: none;
+}
+
+#searchBtn {
+    margin-left: 4px;
+}

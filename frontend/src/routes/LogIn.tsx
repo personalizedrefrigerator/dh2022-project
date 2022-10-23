@@ -22,7 +22,12 @@ const LogIn = () => {
             const result = await postRoute('/token', {
                 email, password,
             });
-            setToken(result.access_token);
+
+            if (result.access_token) {
+                setToken(result.access_token);
+            } else {
+                setToken(null);
+            }
             setStatus(result?.msg);
         };
 
@@ -31,7 +36,7 @@ const LogIn = () => {
 
     const signInContent = (
         <div>
-            <fieldset><legend>Sign Up</legend>
+            <fieldset><legend>Log In</legend>
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input ref={setEmailRef} id='email' type='email'/>

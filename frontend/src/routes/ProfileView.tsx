@@ -1,13 +1,24 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import fetchRoute from "../api/fetchRoute";
 import { UserData } from "../helper/types";
 import useData from "../helper/useData";
 
 interface ProfileViewProps {
-    username: string;
+    username?: string;
 }
 
 const ProfileView = ({ username }: ProfileViewProps) => {
-    const user = useData<UserData>(`/users/${username}`)[0];
+    const [ user, setUser ] = useState<UserData|null>(null);
+
+    useEffect(() => {
+        const getUser = async () => {
+            const route = username ? `/users/${username}` : '/my-profile';
+            const data = await fetchRoute(route);
+            setUser(data as UserData);
+        };
+        getUser();
+    }, [setUser]);
 
     return (
         <Container>

@@ -2,9 +2,9 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-top: 1%;
     box-sizing: border-box;
     background-color: var(--primary-shadow-color);
+    padding: 1em
 }
 
 .left {
@@ -16,7 +16,13 @@
 }
 
 .navBtn {
-    background-color: var(--primary-fg-color);
-    font-family: serif;
+    background-color: var(--primary-bg-color);
     margin: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: var(--primary-fg-color);
+    text-decoration: none;
+    border-radius: 0.4em;
 }

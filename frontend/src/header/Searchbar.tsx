@@ -1,5 +1,6 @@
 import { Form, useLoaderData } from "react-router-dom";
 import fetchRoute from "../api/fetchRoute";
+import './Searchbar.css'
 
 interface LoaderResult {
     results: string[]; // Post IDs
@@ -38,7 +39,7 @@ const Searchbar = () => {
                     placeholder="Search..."
                     defaultValue={query}
                 />
-                <input type="submit" value="Search"/>
+                <input type="submit" id="searchBtn" value="Search"/>
             </Form>
             {results}
         </>

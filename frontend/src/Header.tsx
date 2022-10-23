@@ -7,8 +7,10 @@ const Header = () => {
     return (
         <header>
             <Navabar />
-            <Searchbar/>
-            <TagList/>
+            <div className='nonNav'>
+                <Searchbar/>
+                <TagList/>
+            </div>
         </header>
     );
 };

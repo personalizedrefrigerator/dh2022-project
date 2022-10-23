@@ -32,6 +32,7 @@ header {
 
     padding-left: 10px;
     padding-right: 10px;
+    background-color: var(--primary-shadow-color);
 }
 
 
@@ -39,4 +40,8 @@ header {
     header {
         padding: 10px;
     }
+}
+
+.nonNav {
+    padding: 1.5em;
 }
