@@ -1,7 +1,14 @@
+import Navabar from './header/Navabar'
+import Searchbar from './header/Searchbar'
+import TagList from './header/TagList'
 
 const Header = () => {
     return (
-        <header>To-do</header>
+        <>
+            <Navabar/>
+            <Searchbar/>
+            <TagList/>
+        </>
     );
 };
 
