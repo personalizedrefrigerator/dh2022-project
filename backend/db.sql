@@ -11,7 +11,8 @@ CREATE TABLE user (
     lastName TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     pass TEXT NOT NULL,
-    email TEXT NOT NULL
+    salt TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE tag (
