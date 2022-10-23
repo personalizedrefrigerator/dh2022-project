@@ -1,12 +1,11 @@
 import Navabar from './header/Navabar'
 import Searchbar from './header/Searchbar'
 import TagList from './header/TagList'
-import Router from './Router';
 
-const Header = ({ router }: { router: Router }) => {
+const Header = () => {
     return (
         <>
-            <Navabar router={router} />
+            <Navabar />
             <Searchbar/>
             <TagList/>
         </>

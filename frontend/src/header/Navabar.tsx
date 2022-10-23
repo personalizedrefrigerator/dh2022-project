@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
-import Router from '../Router';
+import { Link } from 'react-router-dom';
 import './Navabar.css';
 
-const Navabar = ({ router }: { router: Router }) => {
+const Navabar = () => {
     return (
         <div className='navabar'>
             <div className='left'>
-                <button onClick={() => router.changePage('profile')} className='navBtn'>Create Post</button>
-                <button className='navBtn'>Profile</button>
+                <Link to={'new-post'}>Create Post</Link>
+                <Link to={'profile'} className='navBtn'>Profile</Link>
             </div>
             <div className='right'>
-                <button className='navBtn'>Login</button>
+                <Link to={'login'} className='navBtn'>Login</Link>
             </div>
         </div>
-    )
+    );
 }
 
 export default Navabar;
