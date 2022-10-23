@@ -40,11 +40,16 @@ const LogIn = () => {
             <fieldset><legend>Log In</legend>
                 <div>
                     <label htmlFor="email">Email: </label>
-                    <input ref={setEmailRef} id='email' type='email'/>
+                    
+                </div>
+                <div>
+                    <input ref={setEmailRef} className='field' id='email' type='email'/>
                 </div>
                 <div>
                     <label htmlFor="password">Password: </label>
-                    <input ref={setPassboxRef} id='password' type='password'/>
+                </div>
+                <div>
+                    <input ref={setPassboxRef} className='field' id='password' type='password'/>
                 </div>
                 <div id="status" style={{
                     display: status !== null ? 'block' : 'none'
