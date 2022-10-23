@@ -5,4 +5,15 @@
 
     padding-left: 12px;
     padding-right: 12px;
+
+    width: 100%;
+    background-color: var(--primary-bg-color);
+    border-radius: 8px;
+    color: white;
+
+}
+
+.post-summary:hover {
+    cursor: pointer;
+    background-color: var(--primary-shadow-color);
 }
