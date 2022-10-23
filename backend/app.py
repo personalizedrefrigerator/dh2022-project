@@ -8,29 +8,23 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-def get_row_data(rows):
+def get_all_rows(table):
+    conn = get_db_connection()
+    rows = conn.execute(f'SELECT * FROM {table}').fetchall()
+    conn.close
     return [dict(row) for row in rows]
 
 @api.route('/users')
 def get_users():
-    conn = get_db_connection()
-    users = conn.execute('SELECT * FROM user').fetchall()
-    conn.close()
-    return get_row_data(users)
+    return get_all_rows('user')
 
 @api.route('/posts')
 def get_posts():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM post').fetchall()
-    conn.close()
-    return get_row_data(posts)
+    return get_all_rows('post')
 
 @api.route('/tags')
 def get_tags():
-    conn = get_db_connection()
-    tags = conn.execute('SELECT * FROM tag').fetchall()
-    conn.close()
-    return get_row_data(tags)
+    return get_all_rows('tag')
 
 @api.route('/search')
 def get_search():
