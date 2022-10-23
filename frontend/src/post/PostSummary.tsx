@@ -11,7 +11,6 @@ const PostSummary = ({ data }: { data: PostData }) => {
                     <h2>{data.title}</h2>
                 </div>
                 <div className='rightDisplay'>
-                    <Tag/>
                 </div>
             </div>
             <p>{data.content}</p>
