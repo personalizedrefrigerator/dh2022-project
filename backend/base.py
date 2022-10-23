@@ -4,7 +4,7 @@ api = Flask(__name__)
 
 @api.route('/posts')
 def posts():
-    response_body = [];
+    response_body = []
     for i in range(10):
         response_body.append({
             "id": i,
@@ -17,7 +17,7 @@ def posts():
 
 @api.route('/users')
 def users():
-    response_body = [];
+    response_body = []
 
     for i in range(10):
         response_body.append({
