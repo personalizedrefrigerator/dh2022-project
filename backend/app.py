@@ -167,7 +167,12 @@ def user_exists(email, username=None):
 
 def hash_password(password: str, salt: str) -> str:
     # Determining scrypt parameters: https://crypto.stackexchange.com/a/37088
-    return base64.b64encode(hashlib.scrypt(password.encode('utf-8'), n=4096 * 2, r=8, p=2, salt=salt.encode('utf-8')))
+    try:
+        hashed = hashlib.scrypt(password.encode('utf-8'), n=4096 * 2, r=8, p=2, salt=salt.encode('utf-8'))
+        return base64.b64encode(hashed)
+    except:
+        print('!!!!!! USING BAD HASH METHOD !!!!!!')
+        return hashlib.sha512(password.encode('utf-8') + salt.encode('utf-8')).hexdigest()
 
 @api.route('/new-account', methods=["POST"])
 def create_account():
