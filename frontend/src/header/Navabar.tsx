@@ -10,7 +10,7 @@ const Navabar = () => {
     return (
         <div className='navabar'>
             <div className='left'>
-                <Link to={'home'} className='navBtn'>Home</Link>
+                <Link to={'/'} className='navBtn'>Home</Link>
                 <Link to={'new-post'} className='navBtn'>Create Post</Link>
             </div>
             <div className='right'>

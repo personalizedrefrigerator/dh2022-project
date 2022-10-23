@@ -38,3 +38,8 @@ def tags():
         "id": "1234",
         "color": "black"
     }]
+
+
+@api.route('/search/<query>')
+def search(query=''):
+    return ["some-post-id-here"]
