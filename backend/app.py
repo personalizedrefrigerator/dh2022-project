@@ -4,7 +4,7 @@ import functools
 import sqlite3
 import secrets, hashlib, base64
 
-import flask_jwt_extended as jwt
+import flask_jwt_extended as jwtlib
 
 
 # Generate a private key for use with JSON web tokens.
@@ -17,7 +17,7 @@ api = Flask(__name__)
 api.config["JWT_SECRET_KEY"] = privateKey
 api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
 
-jwt = jwt.JWTManager(api)
+jwt = jwtlib.JWTManager(api)
 
 
 # creates a database connection
@@ -115,17 +115,17 @@ def search():
 
 
 
-def get_salt(email: bytes) -> bytes:
+def get_salt(email: str) -> str:
     con = get_db_connection()
-    res = con.execute('SELECT salt FROM user WHERE email=:email', email)
-    row = res.fetchone()
+    res = con.execute('SELECT salt FROM user WHERE email=:email', { "email": email })
+    row = dict(res.fetchone())['salt']
     con.close()
     return row
 
 def validate_password(email, password_hash):
     con = get_db_connection()
-    res = con.execute('SELECT pass FROM user WHERE email=:email', email)
-    row = res.fetchone()
+    res = con.execute('SELECT pass FROM user WHERE email=:email', { "email": email })
+    row = dict(res.fetchone())['pass']
     con.close()
     return row == password_hash
 
@@ -190,13 +190,13 @@ def create_token():
         print("[!] Invalid password.")
         return bad_pass_result
 
-    access_token = jwt.create_access_token(identity=email)
-    return { 'access_token': access_token }
+    access_token = jwtlib.create_access_token(identity=email)
+    return { 'access_token': access_token, 'msg': 'Success!' }
 
 @api.route('/logout', methods=['POST'])
 def logout():
     response = jsonify({ 'msg': 'logged out' })
-    jwt.unset_jwt_cookies(response)
+    jwtlib.unset_jwt_cookies(response)
     return response
 
 @api.after_request

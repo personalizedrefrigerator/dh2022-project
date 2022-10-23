@@ -18,7 +18,7 @@ const postRoute = async (route: string, data: any): Promise<any> => {
         },
         
     });
-    console.assert(resp.ok);
+    console.assert(resp.ok, 'response not okay');
     //DBG:
     //console.log('txt', await resp.text());
     return await resp.json();
