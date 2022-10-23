@@ -1,10 +1,44 @@
+/* Didn't know the names of color placeholders so used these for now */
+a:link, a:visited {
+    /* uses a button type layout */
+    background-color: red;
+    color: whitesmoke;
+    padding: 4px 45px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px; 
+  }
+
+a:link {
+    color: red;
+    background-color: black;
+}
+
+  
+a:hover {
+    color: hotpink;
+    background-color: yellow;
+}
+/* maybe consider using like a pink/magenta as one of our colors to honor tmobile the sponsor of dubhacks? */
+a:active {
+    color: blue;
+    background-color: yellow;
+}
+
 header {
+    border-bottom: 1px solid var(--primary-fg-color);
+    background-color: var(--primary-bg-color); 
+
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: var(--primary-shadow-color);
 }
 
+
 @media screen and (max-width: 600px) {
     header {
-        padding: 0px;
+        padding: 10px;
     }
 }
 

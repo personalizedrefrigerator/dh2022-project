@@ -4,6 +4,7 @@ import useData from '../helper/useData';
 
 import PostSummary from './PostSummary';
 import { PostData } from '../helper/types';
+import styled from '@emotion/styled';
 
 const Posts = ({ count }: { count: number }) => {
     const postData = useData<PostData>('/posts');
@@ -19,10 +20,16 @@ const Posts = ({ count }: { count: number }) => {
     }, [ postData ]);
 
     return (
-        <div>
+        <PostListWrapper>
             { posts.length === 0 ? 'There are no posts ☹' : posts }
-        </div>
+        </PostListWrapper>
     );
 };
 
 export default Posts;
+
+const PostListWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+`;

@@ -15,7 +15,7 @@ privateKey = secrets.token_urlsafe(64)
 
 api = Flask(__name__)
 api.config["JWT_SECRET_KEY"] = privateKey
-api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
+api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=5)
 
 jwt = jwtlib.JWTManager(api)
 
@@ -41,8 +41,11 @@ def find_all(table):
 
 # Creates a new record in the given database table
 def create_one(table, requestData):
-    conn = get_db_connection()
     data = requestData.get_json()
+    return create_one_from_data(table, data)
+
+def create_one_from_data(table, data):
+    conn = get_db_connection()
     keys = functools.reduce(lambda a, b: f'{a}, {b}', list(data.keys()))
     
     params = '?'
@@ -100,9 +103,21 @@ def get_user(username):
     conn.close()
     return dict(user)
 
-@api.route('/posts',  methods=['GET', 'POST'])
+@api.route('/posts', methods=['GET'])
 def handle_posts():
-    return handle_request('post', request)
+    posts = find_all('post')
+    posts.reverse()
+    return posts
+
+@api.route('/create-post', methods=['POST'])
+@jwtlib.jwt_required()
+def create_post():
+    email = jwtlib.get_jwt_identity()
+    assert user_exists(email)
+
+    ## TODO: Link email to data
+    data = request.get_json()
+    return create_one_from_data('post', data)
 
 @api.route('/tags',  methods=['GET', 'POST'])
 def handle_tags():
@@ -138,16 +153,17 @@ def validate_password(email, password_hash):
     con.close()
     return row == password_hash
 
-def user_exists(email, username):
+def user_exists(email, username=None):
     con = get_db_connection()
     res = con.execute('SELECT * FROM user WHERE email=:email', { "email": email })
     email_result = res.fetchone()
-    res = con.execute('SELECT * FROM user WHERE username=:uname', { "uname": username })
-    username_result = res.fetchone()
+    username_result = None
+    if username:
+        res = con.execute('SELECT * FROM user WHERE username=:uname', { "uname": username })
+        username_result = res.fetchone()
     con.close()
 
     return email_result or username_result
-
 
 def hash_password(password: str, salt: str) -> str:
     # Determining scrypt parameters: https://crypto.stackexchange.com/a/37088
