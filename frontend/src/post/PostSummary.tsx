@@ -3,8 +3,11 @@ import './PostSummary.css';
 import { PostData, TagData } from '../helper/types';
 import styled from '@emotion/styled';
 import useData from '../helper/useData';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import fetchRoute from '../api/fetchRoute';
+import { useNavigate } from 'react-router-dom';
+import Tag from '../header/Tag';
+import safeHTML from '../helper/safeHTML';
 
 const PostSummary = ({ data }: { data: PostData }) => {
     const [tag, setTag] = useState<TagData | null>(null);
@@ -18,9 +21,22 @@ const PostSummary = ({ data }: { data: PostData }) => {
 
     }, [setTag]);
 
+    const PostSummary = ({ data }: { data: PostData }) => {
+        const navigate = useNavigate();
+    
+        const doNavigate = useCallback(() => {
+            navigate('/posts/' + data.postId);
+        }, [navigate]);
+
     return (
-        <button className='post-summary' type="button">
-            <h2>{data.title}</h2>
+        <button onClick={doNavigate} className='post-summary' type="button">
+            <div className='postHeader'>
+                <div className='leftDisplay'>
+                    <h2>{data.title}</h2>
+                </div>
+                <div className='rightDisplay'>
+                </div>
+            </div>
             <p>{data.content}</p>
             <TagContainer>
                 <Tag color={tag?.color || '#fff'}>{tag?.tagName}</Tag>

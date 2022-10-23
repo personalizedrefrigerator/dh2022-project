@@ -122,6 +122,15 @@ def get_tag_name(postId):
     conn.close()
     return dict(tag)
 
+@api.route('/post/<id>', methods=['GET'])
+def get_post(id: int):
+    print('ID', id)
+    conn = get_db_connection()
+    res = conn.execute('SELECT * from post WHERE postId=:id', {"id": id}).fetchone()
+    conn.close()
+    return dict(res)
+
+
 @api.route('/create-post', methods=['POST'])
 @jwtlib.jwt_required()
 def create_post():

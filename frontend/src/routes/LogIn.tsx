@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import postRoute from "../api/postRoute";
 import { setToken, useToken } from "../helper/loginToken";
 import signOut from "../helper/signOut";
+import './InputFields.css'
 
 const LogIn = () => {
     const [ emailRef, setEmailRef ] = useState<HTMLInputElement|null>(null);
@@ -38,12 +39,17 @@ const LogIn = () => {
         <div>
             <fieldset><legend>Log In</legend>
                 <div>
-                    <label htmlFor="email">Email:</label>
-                    <input ref={setEmailRef} id='email' type='email'/>
+                    <label htmlFor="email">Email: </label>
+                    
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
-                    <input ref={setPassboxRef} id='password' type='password'/>
+                    <input ref={setEmailRef} className='field' id='email' type='email'/>
+                </div>
+                <div>
+                    <label htmlFor="password">Password: </label>
+                </div>
+                <div>
+                    <input ref={setPassboxRef} className='field' id='password' type='password'/>
                 </div>
                 <div id="status" style={{
                     display: status !== null ? 'block' : 'none'

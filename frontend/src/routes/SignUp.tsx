@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import postRoute from "../api/postRoute";
+import './InputFields.css'
 
 const SignUp = () => {
     const [ emailRef, setEmailRef ] = useState<HTMLInputElement|null>(null);
@@ -56,36 +57,31 @@ const SignUp = () => {
     return (
         <div>
             <fieldset><legend>Sign Up</legend>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input ref={setEmailRef} id='email' type='email'/>
+            <div className="cols">
+                <div className="col left">
+                    <div><label htmlFor="email">Email:</label></div>
+                    <div><input ref={setEmailRef} id='email' className='field' type='email'/></div>
+                    <div><label htmlFor="firstname">First Name:</label></div>
+                    <div><input ref={setFirstnameRef} id='firstname' className='field' type='text'/></div>
+                    <div><label htmlFor="password1">Password:</label></div>
+                    <div><input onChange={onPassswordChange} ref={setPassbox1Ref} id='password1' className='field' type='password'/></div>
+                        <div id="status" style={{
+                        display: status !== null ? 'block' : 'none'
+                    }}>
+                        {status}
+                    </div>
+                    <button onClick={submit}>Okay</button>
                 </div>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input ref={setUsernameRef} id='username' type='text'/>
+                <div className="col right">
+                    <div><label htmlFor="username">Username:</label></div>
+                    <div><input ref={setUsernameRef} id='username' className='field' type='text'/></div>
+                    <div><label htmlFor="lastname">Last name:</label></div>
+                    <div><input ref={setLastNameRef} id='lastname' className='field' type='text'/></div>
+                    <div><label htmlFor="password2">Confirm Password:</label></div>
+                    <div><input onChange={onPassswordChange} ref={setPassbox2Ref} id='password2' className='field' type='password'/></div>
                 </div>
-                <div>
-                    <label htmlFor="firstname">First name:</label>
-                    <input ref={setFirstnameRef} id='firstname' type='text'/>
-                </div>
-                <div>
-                    <label htmlFor="lastname">Last name:</label>
-                    <input ref={setLastNameRef} id='lastname' type='text'/>
-                </div>
-                <div>
-                    <label htmlFor="password1">Password:</label>
-                    <input onChange={onPassswordChange} ref={setPassbox1Ref} id='password1' type='password'/>
-                </div>
-                <div>
-                    <label htmlFor="password2">Confirm Password:</label>
-                    <input onChange={onPassswordChange} ref={setPassbox2Ref} id='password2' type='password'/>
-                </div>
-                <div id="status" style={{
-                    display: status !== null ? 'block' : 'none'
-                }}>
-                    {status}
-                </div>
-                <button onClick={submit}>Okay</button>
+                
+            </div>
             </fieldset>
         </div>
     );

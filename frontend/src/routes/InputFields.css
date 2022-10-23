@@ -1,0 +1,23 @@
+input, button {
+    background-color: var(--primary-bg-color);
+    font-family: 'Didact Gothic', Verdana, Arial, Helvetica, sans-serif;
+    padding: 4px;
+    color: var(--primary-fg-color);
+    text-decoration: none;
+    border-radius: 0.4em;
+    border: solid 1px;
+}
+
+button {
+    margin-top: 3px;
+}
+
+.field {
+    width: 70%;
+    margin-bottom:4px;
+}
+
+.col {
+    float: left;
+    width: 50%;
+}
