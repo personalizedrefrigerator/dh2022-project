@@ -100,8 +100,15 @@ def get_user(username):
     conn.close()
     return dict(user)
 
-@api.route('/posts',  methods=['GET', 'POST'])
+@api.route('/posts', methods=['GET'])
 def handle_posts():
+    return handle_request('post', request)
+
+@api.route('/create-post', methods=['POST'])
+@jwtlib.jwt_required()
+def create_post():
+    email = jwtlib.get_jwt_identity()
+    assert user_exists(email)
     return handle_request('post', request)
 
 @api.route('/tags',  methods=['GET', 'POST'])
@@ -138,16 +145,17 @@ def validate_password(email, password_hash):
     con.close()
     return row == password_hash
 
-def user_exists(email, username):
+def user_exists(email, username=None):
     con = get_db_connection()
     res = con.execute('SELECT * FROM user WHERE email=:email', { "email": email })
     email_result = res.fetchone()
-    res = con.execute('SELECT * FROM user WHERE username=:uname', { "uname": username })
-    username_result = res.fetchone()
+    username_result = None
+    if username:
+        res = con.execute('SELECT * FROM user WHERE username=:uname', { "uname": username })
+        username_result = res.fetchone()
     con.close()
 
     return email_result or username_result
-
 
 def hash_password(password: str, salt: str) -> str:
     # Determining scrypt parameters: https://crypto.stackexchange.com/a/37088

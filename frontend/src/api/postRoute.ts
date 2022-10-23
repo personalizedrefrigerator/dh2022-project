@@ -15,7 +15,9 @@ const postRoute = async (route: string, data: any): Promise<any> => {
     console.assert(resp.ok, 'response not okay');
     //DBG:
     //console.log('txt', await resp.text());
-    return await resp.json();
+    const json = await resp.json();
+    json.ok = resp.ok;
+    return json;
 };
 
 export default postRoute;
