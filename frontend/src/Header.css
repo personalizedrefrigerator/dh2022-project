@@ -25,9 +25,7 @@ a:active {
 }
 
 header {
-    border-bottom: 1px solid var(--primary-fg-color);
     background-color: var(--primary-bg-color); 
-
     background-color: var(--primary-shadow-color);
 }
 
