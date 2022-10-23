@@ -9,7 +9,7 @@
     width: 100%;
     background-color: var(--primary-bg-color);
     border-radius: 8px;
-    color: white;
+    color: var(--primary-fg-color);
 
 }
 
