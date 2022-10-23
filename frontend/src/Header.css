@@ -1,13 +1,13 @@
 header {
-    border-bottom: 1px solid var(--primary-fg-color);
-    background-color: var(--primary-bg-color);
-
-    padding-left: 10px;
-    padding-right: 10px;
+    background-color: var(--primary-shadow-color);
 }
 
 @media screen and (max-width: 600px) {
     header {
         padding: 0px;
     }
+}
+
+.nonNav {
+    padding: 1.5em;
 }
